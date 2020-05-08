@@ -6,32 +6,24 @@ def has_negatives(a):
     speed = {}
     result = []
     for x in a:
-        key_neg = "neg" + str(x)
-        key_pos = "neg" + str(x)
-
-        if x < 0:
-            try:
-                hold_test = speed[key_neg]
-            except KeyError:
-                speed[key_neg] = True
-        else:
-            try:
-                hold_test = speed[key_pos]
-            except KeyError:
-                speed[key_pos] = True
-
         try:
-            if speed[key_pos] is True and speed[key_neg] is True:
-                try:
-                    if speed["result" + str(x)] is True:
-                        pass
-                except KeyError:
-                    result.append(abs(x))
-                    speed["result" + str(x)] = True
-        except KeyError:
-            pass
+            hold_test = speed["result" + str(abs(x))]
+            if hold_test[0] == x:
+                pass
+            else:
+                if len(speed["result" + str(abs(x))]) < 2:
+                    speed["result" + str(abs(x))].append(x)
 
-    print(speed)
+            if len(speed["result" + str(abs(x))]) == 2:
+                result.append(abs(x))
+
+        except KeyError:
+            speed["result" + str(abs(x))] = []
+            speed["result" + str(abs(x))].append(x)
+
+
+
+    #print(speed)
     return result
 
 
