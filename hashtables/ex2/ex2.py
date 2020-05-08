@@ -6,9 +6,25 @@ class Ticket:
 
 
 def reconstruct_trip(tickets, length):
-    
+
     """
     YOUR CODE HERE
     """
+    speed = {}
+    route = []
+    for x in tickets:
+        #print(x.source)
+        #print(f"{x.destination}\n")
+        speed[x.source] = x.destination
+
+    count = 0
+    route.append(speed["NONE"])
+    while count < length-1:
+        route.append(speed[route[count]])
+        count += 1
+        print(route)
+
+
+
 
     return route
